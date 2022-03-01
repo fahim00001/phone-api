@@ -1,6 +1,9 @@
 const loadSearch = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
+
+    // clear searchbox value
+    const searchText = '';
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
         .then(res => res.json())
