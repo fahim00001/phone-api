@@ -1,13 +1,11 @@
 const loadSearch = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-
-    // clear searchbox value
-    const searchText = '';
+    searchField.value = '';
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
         .then(res => res.json())
-        .then(data => displaySearchResults(data.data))
+        .then(data => displaySearchResults(data.data.slice(0, 20)))
 }
 
 const displaySearchResults = phones => {
@@ -16,6 +14,7 @@ const displaySearchResults = phones => {
     searchResult.textContent = '';
     phones.forEach(phone => {
         const div = document.createElement('div');
+        const phoneIdName = phone.slug;
         div.classList.add('col');
         div.innerHTML = `
     <div class="card">
@@ -25,10 +24,22 @@ const displaySearchResults = phones => {
            <h2 class="text-center">${phone.brand}</h2>
        </div>
        <div class="mx-auto pb-3 ">
-           <button type="button" class="btn btn-primary px-3 fs-5 ">Details</button>
+           <button onclick="loadPhoneDetails('${phoneIdName}')" type="button" class="btn btn-primary px-3 fs-5 ">Details</button>
        </div>
      </div>
        `
         searchResult.appendChild(div)
     });
+}
+const loadPhoneDetails = phoneId => {
+    console.log(phoneId);
+    const url = ` https://openapi.programming-hero.com/api/phone/${phoneId}`
+    console.log(url);
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayloadDetails(data.data))
+}
+
+const displayloadDetails = phone => {
+    console.log(phone);
 }
