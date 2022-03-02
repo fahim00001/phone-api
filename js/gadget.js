@@ -71,8 +71,6 @@ const featureDeatial = (feature) => {
     }
 }
 
-
-
 const displayloadDetails = phone => {
     const phoneFeature = document.getElementById('phone-details');
     phoneFeature.textContent = '';
