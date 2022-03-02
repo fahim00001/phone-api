@@ -5,8 +5,11 @@ const loadSearch = () => {
     phoneFeature.textContent = '';
     const searchText = searchField.value;
     searchField.value = '';
+
+    const errorMassage = document.getElementById('Error-massage')
+
     if (searchText == '') {
-        console.log('oy');
+        errorMassage.style.display = 'block'
     }
     else {
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -71,25 +74,25 @@ const displayloadDetails = phone => {
     phoneFeature.textContent = '';
     const div = document.createElement('div');
     div.classList.add('row', 'container', 'mx-auto', 'gx-5', 'my-5')
-    const wlan = phone?.others?.WLAN;
+
     div.innerHTML = `
     <div class="col-lg-5">
         <div class=" mx-auto ">
-        <img  src="${phone.image}" class=" w-75 mx-3  mt-5" alt="...">
-        <h6 class="text-center my-3">${featureDeatial(phone.releaseDate)}</h6>
+        <img  src="${phone?.image}" class=" w-75 mx-3  mt-5" alt="...">
+        <h6 class="text-center my-3">${featureDeatial(phone?.releaseDate)}</h6>
         </div>
     </div>
     <div class="col-lg-7">
         <div class="p-3  border bg-light">
         <p class="text-center fw-bold my-1">Phone Feature</p>
-         <h5 class="card-title">Name : ${featureDeatial(phone.name)}</h5>
-         <p class="card-text">Brand : ${featureDeatial(phone.brand)}</p>
-         <p class="card-text">ReleaseDate : ${featureDeatial(phone.releaseDate)}</p>
-         <p class="card-text">DisplaySize : ${featureDeatial(phone.mainFeatures.displaySize)}</p>
-         <p class="card-text">ChipSet : ${featureDeatial(phone.mainFeatures.chipSet)}</p>
-        <p class="card-text">Storage : ${featureDeatial(phone.mainFeatures.storage)}</p>
-         <p class="card-text">Memory : ${featureDeatial(phone.mainFeatures.memory)}</p>
-         <p class="card-text">Sensors : ${featureDeatial(phone.mainFeatures.sensors)}</p>
+         <h5 class="card-title">Name : ${featureDeatial(phone?.name)}</h5>
+         <p class="card-text">Brand : ${featureDeatial(phone?.brand)}</p>
+         <p class="card-text">ReleaseDate : ${featureDeatial(phone?.releaseDate)}</p>
+         <p class="card-text">DisplaySize : ${featureDeatial(phone?.mainFeatures?.displaySize)}</p>
+         <p class="card-text">ChipSet : ${featureDeatial(phone?.mainFeatures?.chipSet)}</p>
+        <p class="card-text">Storage : ${featureDeatial(phone?.mainFeatures?.storage)}</p>
+         <p class="card-text">Memory : ${featureDeatial(phone?.mainFeatures?.memory)}</p>
+         <p class="card-text">Sensors : ${featureDeatial(phone?.mainFeatures?.sensors)}</p>
          <p class="card-text">WLAN : ${featureDeatial(phone?.others?.WLAN)}</p>
         <p class="card-text">Bluetooth : ${featureDeatial(phone?.others?.Bluetooth)}</p>
          <p class="card-text">GPS : ${featureDeatial(phone?.others?.GPS)}</p>
