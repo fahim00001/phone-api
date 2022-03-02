@@ -6,12 +6,13 @@ const loadSearch = () => {
     const searchText = searchField.value;
     searchField.value = '';
 
-    const errorMassage = document.getElementById('Error-massage')
+    const errorMassage = document.getElementById('error-massage')
 
     if (searchText == '') {
         errorMassage.style.display = 'block'
     }
     else {
+        errorMassage.style.display = 'none'
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
         fetch(url)
             .then(res => res.json())
@@ -23,10 +24,12 @@ const displaySearchResults = phones => {
     // console.log(phones);
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
+    const availableError = document.getElementById('error-available');
     if (phones.length === 0) {
-        console.log('sorry we have no phone');
+        availableError.style.display = 'block';
     }
     else {
+        availableError.style.display = 'none';
         phones.forEach(phone => {
             const div = document.createElement('div');
             const phoneIdName = phone.slug;
@@ -78,8 +81,7 @@ const displayloadDetails = phone => {
     div.innerHTML = `
     <div class="col-lg-5">
         <div class=" mx-auto ">
-        <img  src="${phone?.image}" class=" w-75 mx-3  mt-5" alt="...">
-        <h6 class="text-center my-3">${featureDeatial(phone?.releaseDate)}</h6>
+        <img  src="${phone?.image}" class=" w-75 mx-3  mt-3" alt="...">
         </div>
     </div>
     <div class="col-lg-7">
