@@ -43,7 +43,8 @@ const displaySearchResults = phones => {
                <h2 class="text-center">${phone.brand}</h2>
            </div>
            <div class="mx-auto pb-3 ">
-               <button onclick="loadPhoneDetails('${phoneIdName}')" type="button" class="btn btn-primary px-3 fs-5 ">Details</button>
+           <a href="#" class="card-link"><button onclick="loadPhoneDetails('${phoneIdName}')" type="button" class="btn btn-primary px-3 fs-5 ">Details</button></a>
+               
            </div>
          </div>
            `
